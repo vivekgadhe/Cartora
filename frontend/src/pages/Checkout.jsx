@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import { clearCart } from '../redux/cartSlice';
+import API_URL from '../api';
 
 // Load Razorpay only when the customer initiates payment.
 const loadRazorpayScript = () => {
@@ -106,7 +107,7 @@ const Checkout = () => {
       }
 
       // Create the payment order on the backend.
-      const orderRes = await fetch('/api/payment/order', {
+      const orderRes = await fetch(`${API_URL}/api/payment/order`, {
         method: 'POST',
 
         headers: {

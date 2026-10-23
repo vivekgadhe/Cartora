@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { useNavigate, Link } from 'react-router-dom';
+import API_URL from '../api';
 
 const Profile = () => {
   const { user, logout } = useContext(AuthContext);
@@ -23,7 +24,7 @@ const Profile = () => {
       setError('');
 
       try {
-        const res = await fetch('/api/orders/myorders', {
+        const res = await fetch(`${API_URL}/api/orders/myorders`, {
           headers: {
             Authorization: `Bearer ${user.token}`
           }

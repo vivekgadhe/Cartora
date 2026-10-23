@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { Link } from 'react-router-dom';
+import API_URL from '../api';
 
 const AdminProducts = () => {
   const { user } = useContext(AuthContext);
@@ -18,7 +19,7 @@ const AdminProducts = () => {
       setError('');
 
       try {
-        const res = await fetch('/api/products');
+        const res = await fetch(`${API_URL}/api/products`);
 
         if (!res.ok) {
           throw new Error('Unable to load products. Please try again.');
@@ -71,7 +72,7 @@ const AdminProducts = () => {
     setError('');
 
     try {
-      const res = await fetch(`/api/products/${id}`, {
+      const res = await fetch(`${API_URL}/api/products/${id}`, {
         method: 'DELETE',
         headers: {
           Authorization: `Bearer ${user.token}`

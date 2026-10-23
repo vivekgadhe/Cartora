@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
+import API_URL from '../api';
 
 const AdminOrders = () => {
   const { user } = useContext(AuthContext);
@@ -22,7 +23,7 @@ const AdminOrders = () => {
       setError('');
 
       try {
-        const res = await fetch('/api/orders', {
+        const res = await fetch(`${API_URL}/api/orders`, {
           headers: {
             Authorization: `Bearer ${user.token}`
           }
@@ -66,7 +67,7 @@ const AdminOrders = () => {
     setError('');
 
     try {
-      const res = await fetch(`/api/orders/${id}/status`, {
+      const res = await fetch(`${API_URL}/api/orders/${id}/status`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
